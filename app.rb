@@ -12,16 +12,14 @@ class Reassure < Sinatra::Base
 
   get '/' do
     if session['access_token']
-      @graph = Koala::Facebook::GraphAPI.new(session["access_token"])
-      profile = @graph.get_object("me")
-      friends_on_reassure = @graph.get_connections("me", "friends")
-      "#{friends}
-      You are logged in! <a href='/logout'>Logout</a>"
-
+      graph = Koala::Facebook::GraphAPI.new(session["access_token"])
+      @profile = graph.get_object("me")
+      @friends_on_reassure = graph.get_connections("me", "friends")
+      erb :question
       # publish to your wall (if you have the permissions)
       # @graph.put_wall_post("I'm posting from my new cool app!")
     else
-      '<a href="/login">Login</a>'
+      erb :login
     end
   end
 
@@ -38,10 +36,23 @@ class Reassure < Sinatra::Base
     redirect '/'
   end
 
-  #method to handle the redirect from facebook back to you
+  # method to handle the redirect from facebook back to you
   get '/callback' do
-    #get the access token from facebook with your code
+    # get the access token from facebook with your code
     session['access_token'] = session['oauth'].get_access_token(params[:code])
     redirect '/'
   end
+
+  post '/question' do
+    # save submitted question data
+    # do some magic math on friends
+    session['number_of_friend_responses'] = (1..10).to_a.sample
+    if session['number_of_friend_responses'] < 5
+      erb :notenough
+    else
+      @stat = session['number_of_friend_responses'].to_f/10
+      erb :answer
+    end
+  end
+
 end
