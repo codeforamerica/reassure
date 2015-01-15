@@ -20,8 +20,8 @@ class Reassure < Sinatra::Base
       # Cache this or put it in the session?
       @logged_in = true
       @graph = Koala::Facebook::GraphAPI.new(session["access_token"])
-      facebook_id = @graph.get_object("me")['id']
-      @user_answer = Answer.find_by(facebook_id: facebook_id)
+      @facebook_id = @graph.get_object("me")['id']
+      @user_answer = Answer.find_by(facebook_id: @facebook_id)
     end
   end
 
@@ -61,7 +61,7 @@ class Reassure < Sinatra::Base
 
   post '/question' do
     # save submitted question data
-    @answer = Answer.new('facebook_id' => session['facebok_id'],
+    @answer = Answer.new('facebook_id' => @facebook_id,
                           'answer' => params[:answer])
 
     if @answer.save
