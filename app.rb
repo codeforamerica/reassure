@@ -2,7 +2,6 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require 'koala'
 require './environments'
-require 'pry'
 
 class Answer < ActiveRecord::Base  
   validates :facebook_id, presence: true, uniqueness: true
