@@ -5,13 +5,13 @@ X% of your friends have herpes.
 <form action="/question" method="post">
   <div class="form-group">
     <div class="radio">
-      <label><input type="radio" name="optradio">Yes</label>
+      <label><input type="radio" name="answer" value="true">Yes</label>
     </div>
     <div class="radio">
-      <label><input type="radio" name="optradio">No</label>
+      <label><input type="radio" name="answer" value="false">No</label>
     </div>
     <input class="btn next-step" type="submit" value="Share Anonymously">
   </div>
 </form>
 
-<br><br><%= @profile %>
+<br><br><%= session['facebok_id'] %>
