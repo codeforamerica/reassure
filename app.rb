@@ -1,6 +1,13 @@
 require 'sinatra'
+require 'sinatra/activerecord'
 require 'koala'
+require './environments'
 require 'pry'
+
+class Answer < ActiveRecord::Base  
+  validates :facebook_id, presence: true, uniqueness: true
+  validates :answer, :inclusion => { :in => [true, false] }
+end
 
 class Reassure < Sinatra::Base
   use Rack::Session::Cookie, secret: ENV["SECRET"]  
@@ -8,16 +15,26 @@ class Reassure < Sinatra::Base
   before do
     @APP_ID = ENV["FACEBOOK_APP_ID"]
     @APP_SECRET = ENV["FACEBOOK_APP_SECRET"]
+    @MINIMUM_SAMPLE_SIZE = 1
+
+    if session['access_token']
+      # Cache this or put it in the session?
+      @logged_in = true
+      @graph = Koala::Facebook::GraphAPI.new(session["access_token"])
+      facebook_id = @graph.get_object("me")['id']
+      @user_answer = Answer.find_by(facebook_id: facebook_id)
+    end
   end
 
   get '/' do
-    if session['access_token']
-      graph = Koala::Facebook::GraphAPI.new(session["access_token"])
-      @profile = graph.get_object("me")
-      @friends_on_reassure = graph.get_connections("me", "friends")
-      erb :question
-      # publish to your wall (if you have the permissions)
-      # @graph.put_wall_post("I'm posting from my new cool app!")
+    if @logged_in
+      
+      if @user_answer.nil?
+        erb :question
+      else
+        redirect '/answer'
+      end
+
     else
       erb :login
     end
@@ -45,14 +62,26 @@ class Reassure < Sinatra::Base
 
   post '/question' do
     # save submitted question data
-    # do some magic math on friends
-    session['number_of_friend_responses'] = (1..10).to_a.sample
-    if session['number_of_friend_responses'] < 5
-      erb :notenough
+    @answer = Answer.new('facebook_id' => session['facebok_id'],
+                          'answer' => params[:answer])
+
+    if @answer.save
+      redirect '/answer'
     else
-      @stat = session['number_of_friend_responses'].to_f/10
-      erb :answer
+      # Add a flash here
+      redirect '/'
     end
   end
 
+  get '/answer' do
+    friends = @graph.get_connections("me", "friends")
+    if friends.count < @MINIMUM_SAMPLE_SIZE
+      erb :notenough
+    else
+      friends_answers = Answer.where("facebook_id IN (?)", friends).to_a
+      friends_who_said_yes = friends_answers.select { |a| a.answer? }
+      @percent_friends_who_said_yes = (friends_who_said_yes.count.to_f / friends.count).round(2)
+      erb :answer
+    end
+  end
 end
