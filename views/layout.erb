@@ -17,24 +17,17 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script href="<%= url('js/custom.js') %>"></script>
     <!-- Typekit -->
-    <script type="text/javascript" src="//use.typekit.net/qly2lma.js"></script>
-    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
     <!-- G O O G L E   F O N T S -->
     <link href='http://fonts.googleapis.com/css?family=Arvo:400,700,400italic,700italic|Lora:400,700,400italic,700italic|Libre+Baskerville:400,400italic' rel='stylesheet' type='text/css'>
   </head>
   <title>Reassure.us</title>
   <body>
     <header>
-      <div class="identity">
-        <img class="logo" src="<%= url('img/logo.png') %>" alt="">
-      </div>
       <div class="title-block">
-        <p class="title">Reassure</p>
+        <p class="title">Reassure.us</p>
+        <p class="tagline">We are not alone.</p>
       </div>
     </header>
-    <div class="hero">
-      <h1 class="headline"></h1>
-    </div>
       <%= yield %>
       <% if session['access_token'] %>
         <a href='/logout'>Logout</a>

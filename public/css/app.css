@@ -10,8 +10,7 @@ body {
 
 header {
 	width: 100%;
-	padding-bottom: 10px;
-	border-bottom: 3px solid #e6e6e6;
+	background: #A0CBAF;
 }
 
 .identity {
@@ -28,6 +27,7 @@ header {
 
 
 .title-block {
+	padding: 2em 0;
 	display: inline-block;
 	width: 100%;
 	text-align: center;
@@ -36,9 +36,73 @@ header {
 .title {
 	display: inline-block;
 	font-size: 28px;
-	line-height: 32px;
 	font-family: sans-serif;
+	color: #617B6A;
 }
+
+.tagline {
+	color: #617B6A;
+}
+
+.question-section {
+	text-align: center;
+}
+
+.question-mark {
+	display: block;
+	width: 12em;
+	height: auto;
+	margin: 0 auto;
+}
+
+.question-text {
+	width: 100%;
+	padding: 0px 1em .5em 1em;
+	font-size: 18px;
+	color: #888888;
+}
+
+.cta-banner {
+	width: 100%;
+	padding: 1em 1em;
+	text-align: center;
+	background-color: #FAEBAF;
+}
+
+.cta-callout {
+	line-height: 100%;
+	color: #888888;
+	margin: 0;
+}
+
+.cta-explainer {
+	width: 100%;
+	padding: 2em 1em;
+	text-align: center;
+}
+
+.cta-explainer-text {
+	font-size: 14px;
+	color: #888888;
+}
+
+.cta-actions {
+	width: 100%;
+	padding: 0 1em;
+}
+
+.answer-btns {
+	margin: 0 0 1em 0;
+}
+
+.answer-btn {
+	border-color: #888888;
+}
+.connect-button {
+	padding: 1em 1em;
+	margin-bottom: 1em;
+}
+
 /* Desktop Styles */
 @media (min-width: 40em) {
   }
