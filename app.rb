@@ -73,13 +73,13 @@ class Reassure < Sinatra::Base
   end
 
   get '/answer' do
-    friends = @graph.get_connections("me", "friends")
+    friends = @graph.get_connections("me", "friends").map { |f| f['id']}
     if friends.count < @MINIMUM_SAMPLE_SIZE
       erb :notenough
     else
       friends_answers = Answer.where("facebook_id IN (?)", friends).to_a
       friends_who_said_yes = friends_answers.select { |a| a.answer? }
-      @percent_friends_who_said_yes = (friends_who_said_yes.count.to_f / friends.count).round(2)
+      @percent_friends_who_said_yes = ((friends_who_said_yes.count.to_f / friends.count)*100).round
       erb :answer
     end
   end
