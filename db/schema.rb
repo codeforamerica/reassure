@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20150114232617) do
   enable_extension "plpgsql"
 
   create_table "answers", force: :cascade do |t|
-    t.float    "facebook_id"
+    t.string   "facebook_id"
     t.boolean  "answer"
     t.datetime "created_at"
     t.datetime "updated_at"
