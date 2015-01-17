@@ -100,19 +100,34 @@ header {
 }
 
 .answer-btns {
-	margin: 0 0 1em 0;
 }
 
 .answer-btn {
-	border-color: #888888;
+	color: #428bca;
+	text-shadow: none;
+	background-color: white;
+	border: 1px solid #428bca;
+	border-radius: 3px;
+	background-image: none;
 }
-.facebook-button {
+
+.facebook-btn {
 	background-color: #428bca;
 	border: none;
 	border-radius: 3px;
 	background-image: none;
 	padding: 1em 1em;
 	margin-bottom: 1em;
+}
+
+.submit-btn {
+	color: white;
+	background-color: #428bca;
+	border: none;
+	border-radius: 3px;
+	background-image: none;
+	padding: 1em 1em;
+	margin: 1em 0;
 }
 
 .logout-button {

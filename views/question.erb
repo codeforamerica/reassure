@@ -1,17 +1,34 @@
-X% of your friends have herpes.
-
-<br><br>Do you?
-
-<form action="/question" method="post">
-  <div class="form-group">
-    <div class="radio">
-      <label><input type="radio" name="answer" value="true">Yes</label>
+<div class="container-fluid">
+    <div class="statistic-section row">
+        <div class="statistic-circle">
+            <span class="statistic-figure">?</span>
+        </div>
+        <p class="statistic-text">percent of your friends say they have herpes.</p>
     </div>
-    <div class="radio">
-      <label><input type="radio" name="answer" value="false">No</label>
+</div>
+<div class="cta-callout-banner">
+    <div class="container-fluid">
+        <p class="cta-callout-text">Do you?</p>
     </div>
-    <input class="btn next-step" type="submit" value="Share Anonymously">
-  </div>
-</form>
+</div>
+<div class="container-fluid">
+    <div class="cta-explainer">
+        <p class="cta-explainer-text">Answer <strong>honestly</strong> and <strong>anonymously</strong> to learn how you compare to your friends.
+        <br>
+        <br>
+        There is power in sharing.</p>
+    </div>
+	<form action="/question" method="post">
+		<div class="btn-group btn-group-justified answer-btns" data-toggle="buttons" >
+		    <label class="btn btn-primary answer-btn">
+		        <input type="radio" name="answer" value="true"> Yes
+		    </label>
+		    <label class="btn btn-primary answer-btn">
+		        <input type="radio" name="answer" value="false"> No
+		    </label>
+		</div>
+	  <input class="btn btn-block submit-btn next-step" type="submit" value="Share Anonymously">
+	</form>
+</div>
 
 <br><br><%= session['facebok_id'] %>
