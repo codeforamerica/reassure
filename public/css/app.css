@@ -13,21 +13,10 @@ header {
 	background: #A0CBAF;
 }
 
-.identity {
-	width: 100%;
-	display: block;
-}
-
-.logo {
-	display: block;
-	width: 80px;
-	height: auto;
-	margin: auto;
-}
-
+/* Title & Identity */
 
 .title-block {
-	padding: 2em 0;
+	padding: 1em 0;
 	display: inline-block;
 	width: 100%;
 	text-align: center;
@@ -44,32 +33,50 @@ header {
 	color: #617B6A;
 }
 
-.question-section {
+/* Statistic / Hero Section */
+
+.statistic-section {
+	padding: 2em 0 .5em 0;
 	text-align: center;
 }
 
-.question-mark {
-	display: block;
-	width: 12em;
-	height: auto;
+.statistic-circle {
+	width: 100px;
+	height: 100px;
+	background: white;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
+	border: 2px solid #888888;
 	margin: 0 auto;
 }
 
-.question-text {
+.statistic-figure {
+	display: inline-block;
+	position: relative;
+	padding-top: .5em;
+	font-size: 40px;
+	color: #888888;
+}
+
+
+.statistic-text {
 	width: 100%;
-	padding: 0px 1em .5em 1em;
+	padding: .5em 1em;
 	font-size: 18px;
 	color: #888888;
 }
 
-.cta-banner {
+/* Call to Action Section */
+
+.cta-callout-banner {
 	width: 100%;
 	padding: 1em 1em;
 	text-align: center;
 	background-color: #FAEBAF;
 }
 
-.cta-callout {
+.cta-callout-text {
 	line-height: 100%;
 	color: #888888;
 	margin: 0;
@@ -84,6 +91,7 @@ header {
 .cta-explainer-text {
 	font-size: 14px;
 	color: #888888;
+	margin: 0;
 }
 
 .cta-actions {
@@ -98,9 +106,18 @@ header {
 .answer-btn {
 	border-color: #888888;
 }
-.connect-button {
+.facebook-button {
+	background-color: #428bca;
+	border: none;
+	border-radius: 3px;
+	background-image: none;
 	padding: 1em 1em;
 	margin-bottom: 1em;
+}
+
+.logout-button {
+	border: 1px solid #428bca;
+	border-radius: 3px;
 }
 
 /* Desktop Styles */

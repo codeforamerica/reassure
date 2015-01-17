@@ -1,5 +1,16 @@
-<%= @percent_friends_who_said_yes %>% of your friends have herpes.
-
-<a href = "https://www.facebook.com/sharer/sharer.php?u=www.reassure.us">Ask your friends to share</a>
-
+<div class="container-fluid">
+    <div class="statistic-section row">
+        <div class="statistic-circle">
+            <span class="statistic-figure"><%= @percent_friends_who_said_yes %></span>
+        </div>
+        <p class="statistic-text">percent of your friends say they have herpes.</p>
+    </div>
+</div>
+<div class="container-fluid">
+<a href="https://www.facebook.com/sharer/sharer.php?u=www.reassure.us">
+    <button type="button" class="btn btn-primary btn-lg btn-block facebook-button">
+        <p style="margin:0; font-size:12px">Ask your friends to share</p>
+    </button>
+</a>
 <%= @answer %>
+</div>

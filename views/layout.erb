@@ -19,18 +19,24 @@
     <!-- Typekit -->
     <!-- G O O G L E   F O N T S -->
     <link href='http://fonts.googleapis.com/css?family=Arvo:400,700,400italic,700italic|Lora:400,700,400italic,700italic|Libre+Baskerville:400,400italic' rel='stylesheet' type='text/css'>
+    <title>Reassure.us</title>
   </head>
-  <title>Reassure.us</title>
   <body>
     <header>
-      <div class="title-block">
+      <div class="title-block container-fluid">
         <p class="title">Reassure.us</p>
         <p class="tagline">We are not alone.</p>
       </div>
     </header>
       <%= yield %>
       <% if session['access_token'] %>
-        <a href='/logout'>Logout</a>
+        <div class="container-fluid">
+          <a href='/logout'>
+            <div class="btn logout-button">
+              Logout
+            </div>
+          </a>
+        </div>
       <% end %>
   </body>
 </html>
